@@ -21,6 +21,8 @@
   .veredicto .big b{font-size:22px;color:#7CFC9A;display:block;margin-bottom:4px}
   .veredicto .vs{background:var(--coral);border-radius:10px;padding:14px 18px;font-size:14px;max-width:320px}
   .veredicto .vs b{display:block;color:#fff;margin-bottom:4px}
+  .aviso-yield{max-width:1100px;margin:22px auto 0;background:#EAF0FF;border-left:4px solid var(--azul);border-radius:0 8px 8px 0;padding:14px 20px;font-size:15px;color:var(--tinta);line-height:1.6}
+  .aviso-yield b{color:var(--navy)}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:22px auto}
   .kpi{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:16px 18px}
   .kpi .l{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700}
@@ -30,9 +32,9 @@
   section.card{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:22px 24px;margin-bottom:18px}
   section.card h2{font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--azul);font-weight:800;margin-bottom:14px;border-left:4px solid var(--azul);padding-left:10px}
   section.card h2::after{content:""}
-  .charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:18px}
+  .charts{display:flex;flex-direction:column;gap:18px}
   .charts figure{background:var(--fundo);border:1px solid var(--linha);border-radius:10px;padding:10px;margin:0}
-  .charts img{width:100%;height:auto;border-radius:6px;display:block}
+  .charts img{width:100%;max-width:900px;height:auto;border-radius:6px;display:block;margin:0 auto}
   table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
   th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
   td{padding:10px 12px;border-bottom:1px solid var(--linha);vertical-align:top}
@@ -41,7 +43,7 @@
   tr.tese td{background:#FFF0EF;color:#C0362B}
   .note{font-size:12px;color:var(--suave);margin-top:8px;font-style:italic}
   footer{text-align:center;color:var(--suave);font-size:13px;padding:18px;border-top:1px solid var(--linha)}
-  @media(max-width:640px){.charts{grid-template-columns:1fr} header h1{font-size:23px}}
+  @media(max-width:640px){header h1{font-size:23px}}
 </style>
 </head>
 <body>
@@ -54,6 +56,14 @@
        Critério principal: <b style="color:#fff">yield líquido anual</b> (retorno sobre o preço de compra).</p>
   </div>
 </header>
+
+<div class="aviso-yield">
+  <b>O que é "yield"?</b> Yield (lê-se "iêld") é quanto um investimento rende por ano em relação ao valor investido.
+  Você compara o quanto o imóvel gera de <i>receita líquida</i> (aluguel de curta temporada menos custos e taxas)
+  com o <i>preço que você pagou</i> por ele. Yield = receita anual ÷ preço de compra. Exemplo: um imóvel de R$ 1.000.000
+  que gera R$ 80.000 líquidos por ano tem yield de 8%. Quanto maior o yield, mais rápido o dinheiro volta — por isso usamos
+  isso como o critério principal para decidir qual imóvel é o melhor investimento.
+</div>
 
 <div class="wrap">
 
