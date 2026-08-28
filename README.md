@@ -16,17 +16,20 @@ O dashboard é uma página HTML autocontida com gráficos e tabelas mostrando **
 
 ## Como rodar a análise
 
-Pré-requisito: Python 3.12.
+Pré-requisito: Python 3.12+. As bases já estão em `data/`.
 
 ```bash
-# 1. criar o ambiente e instalar dependências
+# 1. criar o ambiente e instalar as dependências (uma vez só)
 python -m venv .venv
-.venv/Scripts/python.exe -m pip install pandas numpy matplotlib
+.venv/Scripts/python.exe -m pip install -r requirements.txt     # Linux/Mac: .venv/bin/python
+# (ou ative o venv e use `python`: Windows `Scripts\activate`, Linux/Mac `source .venv/bin/activate`)
 
-# 2. executar toda a análise de uma vez
-.venv/Scripts/python.exe scripts/run_all.py
+# 2. rodar toda a análise de uma vez (gera output/ + gráficos do dashboard)
+.venv/Scripts/python.exe scripts/run_all.py                     # Linux/Mac: .venv/bin/python
+```
 
-# (opcional) executar passo a passo, na ordem
+Alternativa passo a passo (na ordem):
+```bash
 .venv/Scripts/python.exe scripts/01_prep.py             # prepara e cruza as bases
 .venv/Scripts/python.exe scripts/02_revenue.py          # modelo de receita
 .venv/Scripts/python.exe scripts/03_yield.py            # yield líquido (compra)
