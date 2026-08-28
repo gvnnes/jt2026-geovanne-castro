@@ -3,281 +3,178 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Desafio — Hackathon Jovens Talentos AI Builder 2026 | Seazone</title>
+<title>Dashboard de Investimento — Itapema (SC) · Seazone</title>
 <style>
   :root{
-    --navy:#00143D; --azul:#0055FF; --coral:#FC6058;
-    --tinta:#0E1B33; --suave:#4A5A78; --linha:#DCE3EF; --fundo:#F4F7FC; --branco:#fff;
+    --navy:#00143D; --azul:#0055FF; --coral:#FC6058; --verde:#16a34a;
+    --tinta:#0E1B33; --suave:#4A5A78; --linha:#DCE3EF; --fundo:#F4F7FC;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-    color:var(--tinta); background:var(--fundo); line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:940px;margin:0 auto;padding:0 24px 80px}
-
-  header{background:var(--navy);color:#fff;padding:64px 0 56px;margin-bottom:44px}
-  header .wrap{padding-bottom:0}
-  .tag{display:inline-block;background:var(--coral);color:#fff;font-size:12px;font-weight:700;
-       letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:3px;margin-bottom:22px}
-  header h1{font-size:44px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin-bottom:16px}
-  header p{font-size:19px;color:#A9BCDD;max-width:640px}
-  .meta{display:flex;flex-wrap:wrap;gap:34px;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.16)}
-  .meta div span{display:block;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#7D93BC;margin-bottom:5px}
-  .meta div b{font-size:17px;font-weight:700}
-
-  section{background:var(--branco);border:1px solid var(--linha);border-radius:10px;
-          padding:34px 38px;margin-bottom:22px}
-  h2{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--azul);
-     font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px}
-  h2::before{content:"";width:26px;height:3px;background:var(--azul);border-radius:2px}
-  h3{font-size:20px;font-weight:700;margin:26px 0 10px;color:var(--navy)}
-  h3:first-of-type{margin-top:0}
-  p{margin-bottom:13px;font-size:16px}
-  p:last-child{margin-bottom:0}
-  strong{font-weight:700;color:var(--navy)}
-  a{color:var(--azul)}
-  code{background:var(--fundo);border:1px solid var(--linha);border-radius:4px;
-       padding:2px 6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;color:var(--navy)}
-
-  ul,ol{margin:0 0 13px 22px}
-  li{margin-bottom:8px;font-size:16px}
-
-  .lead{font-size:18px;color:var(--suave)}
-  .destaque{background:#EAF0FF;border-left:4px solid var(--azul);border-radius:0 8px 8px 0;
-            padding:18px 22px;margin:20px 0}
-  .alerta{background:#FFF0EF;border-left:4px solid var(--coral);border-radius:0 8px 8px 0;
-          padding:18px 22px;margin:20px 0}
-  .alerta b{color:#C0362B}
-
-  .perguntas{counter-reset:q;margin:0}
-  .perguntas li{list-style:none;counter-increment:q;position:relative;
-                padding:16px 0 16px 54px;border-bottom:1px solid var(--linha);margin:0;font-size:17px}
-  .perguntas li:last-child{border-bottom:0}
-  .perguntas li::before{content:counter(q);position:absolute;left:0;top:14px;width:32px;height:32px;
-    background:var(--navy);color:#fff;border-radius:50%;display:flex;align-items:center;
-    justify-content:center;font-size:15px;font-weight:700}
-
-  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
-  th{background:var(--navy);color:#fff;text-align:left;padding:12px 14px;font-size:12px;
-     letter-spacing:.09em;text-transform:uppercase;font-weight:700}
-  td{padding:12px 14px;border-bottom:1px solid var(--linha);vertical-align:top}
-  tr:last-child td{border-bottom:0}
+  body{font-family:"Segoe UI",system-ui,Helvetica,Arial,sans-serif;color:var(--tinta);background:var(--fundo);line-height:1.55}
+  header{background:var(--navy);color:#fff;padding:36px 28px}
+  header .tag{display:inline-block;background:var(--coral);color:#fff;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:3px;margin-bottom:14px}
+  header h1{font-size:30px;letter-spacing:-.02em;margin-bottom:6px}
+  header p{color:#A9BCDD;max-width:760px}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px}
+  .veredicto{background:linear-gradient(135deg,#0b2a5e,#00143D);color:#fff;border-radius:12px;padding:22px 26px;margin:26px auto;display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+  .veredicto .big{flex:1;min-width:240px}
+  .veredicto .big b{font-size:22px;color:#7CFC9A;display:block;margin-bottom:4px}
+  .veredicto .vs{background:var(--coral);border-radius:10px;padding:14px 18px;font-size:14px;max-width:320px}
+  .veredicto .vs b{display:block;color:#fff;margin-bottom:4px}
+  .aviso-yield{max-width:1100px;margin:22px auto 0;background:#EAF0FF;border-left:4px solid var(--azul);border-radius:0 8px 8px 0;padding:14px 20px;font-size:15px;color:var(--tinta);line-height:1.6}
+  .aviso-yield b{color:var(--navy)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:22px auto}
+  .kpi{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:16px 18px}
+  .kpi .l{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700}
+  .kpi .v{font-size:26px;font-weight:800;color:var(--navy);margin-top:4px}
+  .kpi .s{font-size:12px;color:var(--suave);margin-top:2px}
+  .kpi.verde .v{color:var(--verde)} .kpi.coral .v{color:var(--coral)}
+  section.card{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:22px 24px;margin-bottom:18px}
+  section.card h2{font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--azul);font-weight:800;margin-bottom:14px;border-left:4px solid var(--azul);padding-left:10px}
+  section.card h2::after{content:""}
+  .charts{display:flex;flex-direction:column;gap:18px}
+  .charts figure{background:var(--fundo);border:1px solid var(--linha);border-radius:10px;padding:10px;margin:0}
+  .charts img{width:100%;max-width:900px;height:auto;border-radius:6px;display:block;margin:0 auto}
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+  th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+  td{padding:10px 12px;border-bottom:1px solid var(--linha);vertical-align:top}
   tbody tr:nth-child(even){background:#FAFCFF}
-
-  .entrega{border:1px solid var(--linha);border-radius:8px;padding:24px 26px;margin-bottom:16px;background:#FCFDFF}
-  .entrega .num{display:inline-block;background:var(--coral);color:#fff;font-size:12px;font-weight:700;
-                padding:4px 11px;border-radius:20px;margin-bottom:12px;letter-spacing:.06em}
-  .check{list-style:none;margin:12px 0 0}
-  .check li{position:relative;padding-left:30px;margin-bottom:11px}
-  .check li::before{content:"";position:absolute;left:0;top:8px;width:15px;height:15px;
-    border:2px solid var(--azul);border-radius:3px}
-
-  .peso{margin-bottom:20px}
-  .peso .topo{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
-  .peso .topo b{font-size:17px;color:var(--navy)}
-  .peso .topo span{font-size:22px;font-weight:700;color:var(--azul)}
-  .barra{height:9px;background:var(--linha);border-radius:5px;overflow:hidden}
-  .barra i{display:block;height:100%;background:var(--azul);border-radius:5px}
-  .peso small{display:block;margin-top:7px;color:var(--suave);font-size:14px}
-
-  .tl{list-style:none;margin:0;padding-left:26px;border-left:2px solid var(--linha)}
-  .tl li{position:relative;padding:0 0 22px 26px;margin:0}
-  .tl li:last-child{padding-bottom:0}
-  .tl li::before{content:"";position:absolute;left:-33px;top:5px;width:13px;height:13px;
-    background:#fff;border:3px solid var(--azul);border-radius:50%}
-  .tl b{display:block;font-size:17px;color:var(--navy)}
-  .tl span{color:var(--suave);font-size:15px}
-
-  footer{text-align:center;padding:44px 0 0;color:var(--suave);font-size:14px}
-  footer b{display:block;color:var(--navy);font-size:17px;margin-bottom:6px}
-
-  @media (max-width:640px){
-    header h1{font-size:31px} section{padding:26px 22px}
-    .meta{gap:22px} table{font-size:14px} th,td{padding:9px 10px}
-  }
-  @media print{
-    body{background:#fff} header{padding:34px 0}
-    section{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
-  }
+  tr.dest td{background:#EEF9F1;font-weight:700;color:var(--verde)}
+  tr.tese td{background:#FFF0EF;color:#C0362B}
+  tr.coral-linha td{background:#FDECEA;color:#C0362B;font-weight:700}
+  .note{font-size:12px;color:var(--suave);margin-top:8px;font-style:italic}
+  footer{text-align:center;color:var(--suave);font-size:13px;padding:18px;border-top:1px solid var(--linha)}
+  @media(max-width:640px){header h1{font-size:23px}}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <div class="tag">Hackathon &middot; 1 dia &middot; Individual</div>
-    <h1>Desafio<br>Jovens Talentos AI Builder</h1>
-    <p>Recomendação de investimento imobiliário para a Seazone, construída com IA.</p>
-    <div class="meta">
-      <div><span>Formato</span><b>Take-home de 1 dia</b></div>
-      <div><span>Cidade</span><b>Itapema &middot; SC</b></div>
-      <div><span>Entregáveis</span><b>Repositório + vídeo</b></div>
-      <div><span>Modo</span><b>Individual</b></div>
-    </div>
+    <span class="tag">Recomendação de investimento</span>
+    <h1>Dashboard — Onde investir em Itapema (SC)?</h1>
+    <p>Análise dos dados de Airbnb e VivaReal para a decisão da Seazone.
+       Critério principal: <b style="color:#fff">yield líquido anual</b> (retorno sobre o preço de compra).</p>
   </div>
 </header>
 
+<div class="aviso-yield">
+  <b>O que é "yield"?</b> Yield (lê-se "iêld") é quanto um investimento rende por ano em relação ao valor investido.
+  Você compara o quanto o imóvel gera de <i>receita líquida</i> (aluguel de curta temporada menos custos e taxas)
+  com o <i>preço que você pagou</i> por ele. Yield = receita anual ÷ preço de compra. Exemplo: um imóvel de R$ 1.000.000
+  que gera R$ 80.000 líquidos por ano tem yield de 8%. Quanto maior o yield, mais rápido o dinheiro volta — por isso usamos
+  isso como o critério principal para decidir qual imóvel é o melhor investimento.
+</div>
+
 <div class="wrap">
 
-  <section>
-    <h2>Antes de começar</h2>
-    <p class="lead">Este desafio testa duas coisas, principalmente:</p>
-    <ul>
-      <li><strong>Raciocínio lógico e de negócio</strong> — transformar informação em uma decisão defensável.</li>
-      <li><strong>Uso real de IA</strong> — queremos ver <em>como</em> você trabalha com IA (Claude Code / OpenCode), não só o resultado.</li>
-    </ul>
-    <div class="destaque">
-      <p><strong>Não é um teste de programação.</strong> Você não precisa ser dev. Precisa pensar bem e usar IA como ferramenta de trabalho.</p>
+  <div class="veredicto">
+    <div class="big">
+      <b>Compre apartamentos de 2–3 quartos em MORRETES</b>
+      Ticket ~R$ 845 mil · Yield líquido de ~8,1% ao ano · Payback ~12 anos
     </div>
-  </section>
-
-  <section>
-    <h2>Contexto</h2>
-    <p>A Seazone gere mais de <strong>3.000 imóveis</strong> de short stay no Brasil e usa IA no centro da operação: precificação, distribuição em canais, originação de novos prédios e captação de proprietários.</p>
-    <p>Uma das decisões mais importantes da empresa é <strong>onde e no que investir</strong>. Neste desafio você faz uma versão dessa análise para uma cidade real.</p>
-  </section>
-
-  <section>
-    <h2>Sua missão</h2>
-    <p>Você recebeu uma base de dados do mercado imobiliário de <strong>Itapema (SC)</strong> — dados reais de anúncios de Airbnb e de venda (VivaReal). Com base neles, entregue uma <strong>recomendação de investimento para a Seazone</strong>, respondendo:</p>
-    <ol class="perguntas">
-      <li>Qual o <strong>melhor perfil de imóvel</strong> para investir na cidade? (tipologia, nº de quartos, tipo de anúncio)</li>
-      <li>Qual a <strong>melhor localização</strong> em termos de receita?</li>
-      <li>Quais <strong>características explicam</strong> as melhores receitas?</li>
-      <li>Se a Seazone fosse investir hoje, <strong>o que você compraria e por quê?</strong> Faça uma estimativa simples de retorno e defenda a decisão.</li>
-    </ol>
-    <div class="alerta">
-      <p><b>Um dado a mais.</b> Uma análise preliminar interna — ainda não validada — sugeriu que <strong>apartamentos compactos (studio/1 quarto) na região do Centro</strong> seriam a aposta mais eficiente para a Seazone. Sua recomendação final deve <strong>tomar posição sobre essa tese</strong>: os dados a sustentam ou não?</p>
+    <div class="vs">
+      <b>A tese interna dos compactos no Centro NÃO se sustenta</b>
+      Centro compacto: yield fraco (4,9%), maior R$/m², menor demanda e maior ociosidade.
     </div>
-    <p>Os termos <em>"melhor"</em>, <em>"perfil"</em> e <em>"localização"</em> são <strong>propositalmente abertos</strong> — você define o critério e justifica. Não existe uma única resposta certa; queremos ver como você pensa e decide.</p>
-  </section>
+  </div>
 
-  <section>
-    <h2>Os dados</h2>
-    <p>A base tem <strong>5 arquivos</strong>. Use os que julgar relevantes para embasar sua recomendação.</p>
+  <div class="grid">
+    <div class="kpi verde"><div class="l">Yield Morretes 3q</div><div class="v">8,1%</div><div class="s">líquido/ano · cenário base (35% ocup.)</div></div>
+    <div class="kpi"><div class="l">Preço de compra</div><div class="v">R$ 845 mil</div><div class="s">mediana apto 3 quartos Morretes</div></div>
+    <div class="kpi"><div class="l">Receita líquida/ano</div><div class="v">R$ 68,6 mil</div><div class="s">bruta R$ 85,5 mil − custos − 15% gestão</div></div>
+    <div class="kpi coral"><div class="l">Yield Compacto Centro</div><div class="v">4,9%</div><div class="s">abaixo da meta ~6% · R$ 19.905/m²</div></div>
+  </div>
+
+  <section class="card">
+    <h2>Por que Morretes vence — yield por perfil</h2>
+    <div class="charts">
+      <figure><img src="dashboard/graficos/yield.png" alt="Yield por perfil"></figure>
+      <figure><img src="dashboard/graficos/bolhas.png" alt="Yield vs preço"></figure>
+    </div>
     <table>
-      <thead><tr><th style="width:32%">Arquivo</th><th>O que tem</th><th style="width:24%">Como conecta</th></tr></thead>
+      <thead><tr><th>Perfil</th><th>Preço compra (mediana)</th><th>Receita líquida/ano</th><th>Yield líquido</th><th>Demanda (rev/ano)</th><th>Risco vacância</th></tr></thead>
       <tbody>
-        <tr><td><code>Details_Itapema.csv</code></td><td>Cada anúncio de Airbnb: título, reviews, star rating, descrição, host_id, nº de quartos, tipo de imóvel</td><td>Base principal dos listings</td></tr>
-        <tr><td><code>Hosts_ids_Itapema.csv</code></td><td>Dados do anfitrião: nº de reviews, anos como host, superhost, taxa de resposta</td><td>Liga com Details pelo <code>owner_id</code></td></tr>
-        <tr><td><code>Mesh_Ids_Data_Itapema.csv</code></td><td>Latitude/longitude + bairro de cada anúncio</td><td>Liga por listing</td></tr>
-        <tr><td><code>Price_AV_Itapema.csv</code></td><td>Preço por anúncio, por data de estadia e por data de captura</td><td>Liga por listing</td></tr>
-        <tr><td><code>VivaReal_Itapema.csv</code></td><td>Anúncios de venda: preço, condomínio, área, vendedor</td><td>Mercado de compra</td></tr>
+        <tr class="dest"><td>Morretes · 2 quartos</td><td>R$ 790 mil</td><td>R$ 64,5 mil</td><td>8,2%</td><td>8,5</td><td>1,2%</td></tr>
+        <tr class="dest"><td>Morretes · 3 quartos</td><td>R$ 845 mil</td><td>R$ 68,6 mil</td><td>8,1%</td><td>8,5</td><td>1,2%</td></tr>
+        <tr><td>Meia Praia · 1 quarto</td><td>R$ 878 mil</td><td>R$ 57,4 mil</td><td>6,5%</td><td>5,0</td><td>0,6%</td></tr>
+        <tr><td>Tabuleiro dos Oliveiras · 2q</td><td>R$ 780 mil</td><td>R$ 50,2 mil</td><td>6,4%</td><td>6,1</td><td>5,0%</td></tr>
+        <tr><td>Casa Branca · 2 quartos</td><td>R$ 655 mil</td><td>R$ 33,1 mil</td><td>5,1%</td><td>6,3</td><td>0,0%</td></tr>
+        <tr class="tese"><td>Centro · 1 quarto (TESE)</td><td>R$ 890 mil</td><td>R$ 44,0 mil</td><td>4,9%</td><td>2,8</td><td>7,8%</td></tr>
+        <tr><td>Centro · 2 quartos</td><td>R$ 1,15 M</td><td>R$ 55,8 mil</td><td>4,9%</td><td>2,8</td><td>7,8%</td></tr>
+        <tr><td>Meia Praia · 2 quartos</td><td>R$ 1,08 M</td><td>R$ 49,5 mil</td><td>4,6%</td><td>5,0</td><td>0,6%</td></tr>
+        <tr><td>Centro · 3 quartos</td><td>R$ 2,1 M</td><td>R$ 84,1 mil</td><td>4,0%</td><td>2,8</td><td>7,8%</td></tr>
+        <tr><td>Meia Praia · 3 quartos</td><td>R$ 1,88 M</td><td>R$ 66,8 mil</td><td>3,5%</td><td>5,0</td><td>0,6%</td></tr>
+        <tr><td>Meia Praia · 4+ quartos</td><td>R$ 3,7 M</td><td>R$ 129,7 mil</td><td>3,5%</td><td>5,0</td><td>0,6%</td></tr>
+        <tr class="coral-linha"><td>Centro · 4+ quartos</td><td>R$ 3,9 M</td><td>R$ 73,6 mil</td><td>1,9%</td><td>2,8</td><td>7,8%</td></tr>
       </tbody>
     </table>
-    <div class="destaque">
-      <p><strong>Onde baixar:</strong> faça um fork do repositório<br>
-      <a href="https://github.com/seazone-tech/jovens-talentos-2026-hackathon-data">github.com/seazone-tech/jovens-talentos-2026-hackathon-data</a></p>
-    </div>
+    <p class="note">Morretes entrega o maior retorno por real investido. Imóveis grandes da orla geram mais receita absoluta, mas o preço de compra (R$ 3–5 M) derruba o yield para ~3,5%.</p>
   </section>
 
-  <section>
-    <h2>O que entregar</h2>
-
-    <div class="entrega">
-      <span class="num">ENTREGÁVEL 1</span>
-      <h3>Repositório público no GitHub</h3>
-      <p style="color:#4A5A78;font-size:15px;margin-bottom:4px">Nome do repositório: <code>jt2026-primeiro-ultimo-nome</code> (ex.: <code>jt2026-ana-souza</code>).</p>
-      <ul class="check">
-        <li><strong>A sua análise</strong> — código, consultas, planilhas de apoio.</li>
-        <li><strong><code>README.md</code></strong> explicando <strong>como rodar</strong> e onde está a resposta.<br>
-            <em>Se não conseguirmos entender sua entrega, não conseguimos avaliar.</em></li>
-        <li><strong>Pasta <code>ai-log/</code></strong> com suas conversas com a IA <strong>exportadas em texto</strong> — arquivos <code>.md</code>, <code>.txt</code> ou <code>.json</code>.<br>
-            Ela é parte da avaliação: é onde vemos <strong>como você trabalhou</strong> — iteração, persistência e senso crítico — não só o que entregou.<br>
-            <strong style="color:#C0362B">Print e captura de tela não valem</strong> — precisa ser texto, para conseguirmos ler a conversa inteira.<br>
-            <strong style="color:#C0362B">Exporte a sessão inteira</strong>, não um trecho escolhido. É o processo que estamos avaliando, não o melhor momento dele.</li>
-        <li><strong>A recomendação final escrita</strong> (no README ou num <code>relatorio.md</code>), incluindo sua <strong>posição sobre a tese</strong> dos compactos no Centro.</li>
-      </ul>
+  <section class="card">
+    <h2>Comparando os bairros: custo, preço e demanda</h2>
+    <div class="charts">
+      <figure><img src="dashboard/graficos/cpm2.png" alt="R$/m² por bairro"></figure>
+      <figure><img src="dashboard/graficos/demanda.png" alt="Demanda e vacância"></figure>
     </div>
-
-    <div class="entrega">
-      <span class="num">ENTREGÁVEL 2</span>
-      <h3>Vídeo de até 3 minutos</h3>
-      <p style="color:#4A5A78;font-size:15px;margin-bottom:4px">Suba no <strong>Google Drive</strong> e compartilhe o link. O link vai na <strong>primeira linha do seu <code>README.md</code></strong>.</p>
-      <ul class="check">
-        <li>Sua <strong>recomendação</strong> e o raciocínio por trás dela.</li>
-        <li><strong>Como você usou a IA</strong> no processo.</li>
-        <li><strong>O que você faria se tivesse mais uma semana.</strong></li>
-      </ul>
-      <div class="alerta" style="margin-bottom:0">
-        <p><b>O compartilhamento precisa estar em "qualquer pessoa com o link".</b> Link restrito é a falha mais comum — e vídeo que não abre conta como vídeo não entregue.</p>
-      </div>
-    </div>
+    <table>
+      <thead><tr><th>Bairro</th><th>Custo compra (R$/m² — 2 a 3q)</th><th>Receita bruta/ano (base)</th><th>Demanda (rev/ano)</th><th>Risco de vacância</th></tr></thead>
+      <tbody>
+        <tr class="dest"><td>Morretes</td><td>~R$ 8–11 mil</td><td>R$ 80–85 mil</td><td>8,5</td><td>1,2%</td></tr>
+        <tr><td>Meia Praia</td><td>~R$ 13–15 mil</td><td>R$ 65–161 mil</td><td>5,0</td><td>0,6%</td></tr>
+        <tr><td>Tabuleiro dos Oliveiras</td><td>~R$ 11 mil</td><td>R$ 59 mil</td><td>6,1</td><td>5,0%</td></tr>
+        <tr><td>Centro</td><td>~R$ 13–17 mil</td><td>R$ 58–99 mil</td><td>2,8</td><td>7,8%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Centro é o bairro de maior custo por m², com baixa demanda e alta ociosidade — o oposto de uma aposta eficiente. Morretes concentra o que interessa: barato por m², com demanda e ocupação saudáveis.</p>
   </section>
 
-  <section>
-    <h2>Como e quando entregar</h2>
-    <ul class="check">
-      <li><strong>Prazo: até as 9h (horário de Brasília) do dia seguinte ao seu dia de hackathon.</strong> Fora do prazo não é avaliada.</li>
-      <li>Envie o <strong>link do repositório</strong> e o <strong>link do vídeo</strong> pelo formulário de entrega:<br>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScSBEuCqmzAPwiGCFVEY6IIt6nUxuoUPYqow_dcFgLdK1RnWA/viewform"><strong>Formulário de entrega do Hackathon</strong></a><br>
-          <span style="color:#4A5A78;font-size:15px">Você só pode enviar uma vez — confira os links antes.</span></li>
-      <li><strong>Confira antes de enviar, numa aba anônima do navegador:</strong> o repositório abre? O link do vídeo toca?<br>
-          Se você não conseguir abrir deslogado, nós também não vamos conseguir — e não temos como avaliar.</li>
-    </ul>
-    <div class="alerta">
-      <p><b>Mantenha o repositório público até 15/09.</b> Repositório fechado ou apagado antes disso conta como entrega não realizada — a correção acontece depois do seu dia.</p>
+  <section class="card">
+    <h2>Estimativa de retorno — o que a Seazone compraria hoje</h2>
+    <div class="charts">
+      <figure><img src="dashboard/graficos/payoff.png" alt="Payoff Morretes 3q"></figure>
+      <figure><img src="dashboard/graficos/preco_noite.png" alt="Preço por noite"></figure>
     </div>
+    <table>
+      <thead><tr><th>Cenário</th><th>Ocupação</th><th>Receita bruta/ano</th><th>Custos fixos</th><th>Taxa gestão (15%)</th><th>Receita líquida/ano</th><th>Yield líquido</th><th>Payback</th></tr></thead>
+      <tbody>
+        <tr><td>Conservador</td><td>25%</td><td>R$ 61,1 mil</td><td>R$ 4,05 mil</td><td>R$ 9,2 mil</td><td>R$ 47,8 mil</td><td>5,7%</td><td>17,7 anos</td></tr>
+        <tr class="dest"><td>Base</td><td>35%</td><td>R$ 85,5 mil</td><td>R$ 4,05 mil</td><td>R$ 12,8 mil</td><td>R$ 68,6 mil</td><td>8,1%</td><td>12,3 anos</td></tr>
+        <tr><td>Otimista</td><td>45%</td><td>R$ 109,9 mil</td><td>R$ 4,05 mil</td><td>R$ 16,5 mil</td><td>R$ 89,4 mil</td><td>10,6%</td><td>9,5 anos</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Mesmo no cenário mais conservador (25% de ocupação) o ativo ainda entrega ~5,7% — sem prejuízo operacional. Defesa da decisão no <b>relatorio.md</b>.</p>
   </section>
 
-  <section>
-    <h2>Como funciona o dia</h2>
-    <ul class="tl">
-      <li><b>09h — Abertura</b><span>Liberação do desafio e dos dados.</span></li>
-      <li><b>09h às 18h — Construção</b><span>Você trabalha. Mentores ficam de plantão numa call aberta o dia todo, para dúvidas de setup e técnicas — não para resolver o desafio por você.</span></li>
-      <li><b>Até as 9h do dia seguinte — Entrega</b><span>Horário de Brasília. A call acaba às 18h, o prazo não: depois das 18h você segue sozinho até o horário-limite.</span></li>
+  <section class="card">
+    <h2>Por que Morretes é a melhor opção — síntese</h2>
+    <ul style="margin-top:6px">
+      <li><b>Maior retorno sobre o capital:</b> yield ~8,1% ao ano, líder entre todos os perfis.</li>
+      <li><b>Ticket de entrada acessível</b> (~R$ 845 mil): permite diversificar em vários ativos e reduz risco de concentração.</li>
+      <li><b>Demanda saudável e real:</b> 8,5 reviews/ano (quase o dobro do Centro) por host experiente.</li>
+      <li><b>Menor ociosidade:</b> apenas 1,2% dos imóveis sem nenhum review vs 7,8% no Centro.</li>
+      <li><b>Boa liquidez de saída:</b> fácil revenda e aluguel tradicional alternativo.</li>
     </ul>
   </section>
 
-  <section>
-    <h2>Regras</h2>
-    <ul>
-      <li>Trabalho <strong>individual</strong>.</li>
-      <li>Prazo: <strong>1 dia</strong> — liberado às 9h, entrega até as <strong>9h do dia seguinte, horário de Brasília</strong>. <strong>Fora do prazo não é avaliada.</strong></li>
-      <li><strong>Uso de IA é obrigatório e faz parte da nota.</strong> Deixe rastro na pasta <code>ai-log/</code>.</li>
-      <li>Dúvidas de setup e técnicas na call de mentoria aberta.</li>
-    </ul>
+  <section class="card">
+    <h2>Por que a tese inicial (compactos no Centro) estava errada</h2>
+    <p>Uma análise preliminar interna sugeriu que apartamentos compactos (studio/1 quarto) na região do Centro seriam a aposta mais eficiente. Os dados mostram o oposto: em <b>todas as dimensões</b> que importam para o retorno, o compacto do Centro perde para outras opções — inclusive para o mesmo tipo de imóvel em outros bairros.</p>
+    <table>
+      <thead><tr><th>Dimensão</th><th>Compacto Centro (1q)</th><th>Por que essa tese enfraquece</th></tr></thead>
+      <tbody>
+        <tr><td>Custo de compra</td><td><b>R$ 19.905/m²</b> (o + caro da cidade)</td><td>Ticket de R$ 890 mil por um imóvel de receita limitada — paga caro pelo m².</td></tr>
+        <tr><td>Receita bruta/ano</td><td>~R$ 58 mil</td><td>Menor até que um 3q de Morretes (R$ 85,5 mil) e que o próprio 2q do Centro (R$ 73 mil).</td></tr>
+        <tr><td>Demanda relativa</td><td><b>2,8 reviews/ano</b> (a menor)</td><td>Menor procura sustentada da cidade, mesmo com o fluxo do Centro.</td></tr>
+        <tr><td>Risco de vacância</td><td><b>7,8% sem reviews</b> (o maior)</td><td>Maior chance de o imóvel ficar parado — oferta ociosa e alta rotação.</td></tr>
+        <tr class="coral-linha"><td>Yield líquido</td><td><b>4,9% ao ano</b></td><td>Bem abaixo da meta (~6%) e da liderança de Morretes (8,1%); a tese priorizou "preço alto por noite" em vez de retorno.</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px"><b>A raiz do erro:</b> a tese provavelmente se baseou no <i>preço por noite</i> do Centro e no apelo de "compacto = alta demanda". Mas os dados mostram que o Centro tem o maior custo de aquisição da cidade e, ao mesmo tempo, a menor demanda relativa e o maior risco de ociosidade — resultando em um retorno baixo (4,9%, abaixo da meta de ~6% e longe dos ~8% de Morretes). <b>A eficiência de um investimento não está no preço que se cobra, mas no quanto cada real investido devolve por ano</b> — e nesse critério, Morretes 2–3 quartos é soberana.</p>
   </section>
 
-  <section>
-    <h2>Como vamos avaliar</h2>
-
-    <div class="peso">
-      <div class="topo"><b>Raciocínio e qualidade da análise</b><span>45%</span></div>
-      <div class="barra"><i style="width:45%"></i></div>
-      <small>A recomendação se sustenta nos dados? Os critérios que você escolheu fazem sentido? Inclui sua posição sobre a tese dos compactos no Centro.</small>
-    </div>
-
-    <div class="peso">
-      <div class="topo"><b>Como você trabalhou com IA</b><span>30%</span></div>
-      <div class="barra"><i style="width:30%"></i></div>
-      <small>O processo registrado no <code>ai-log/</code>: iteração, persistência diante de obstáculo e senso crítico sobre o que a IA devolveu.</small>
-    </div>
-
-    <div class="peso">
-      <div class="topo"><b>Comunicação</b><span>25%</span></div>
-      <div class="barra"><i style="width:25%"></i></div>
-      <small>O vídeo de 3 minutos: clareza, síntese e defesa da decisão.</small>
-    </div>
-
-    <div class="alerta">
-      <p><b>Reprovação imediata:</b></p>
-      <ul style="margin-bottom:0">
-        <li>Sem repositório <strong>ou</strong> sem vídeo.</li>
-        <li>Análise sem embasamento nos dados.</li>
-        <li>Nenhum vestígio de uso de IA.</li>
-      </ul>
-    </div>
-  </section>
-
-  <footer>
-    <b>Boa sorte.</b>
-    Estamos menos interessados na "resposta certa" e mais em <strong>como você pensa, decide e usa IA para chegar lá</strong>.
-    <p style="margin-top:14px">Seazone — Jovens Talentos AI Builder 2026</p>
-  </footer>
-
+  <footer>Hackathon Jovens Talentos AI Builder 2026 · Geovanne Castro · Dados: Airbnb + VivaReal · Relatório completo em <code>relatorio.md</code></footer>
 </div>
 </body>
 </html>

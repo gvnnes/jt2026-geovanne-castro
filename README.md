@@ -3,8 +3,8 @@
 > **Vídeo (3 min):** https://drive.google.com/drive/folders/16GcQvyIdf5C9w3o67ukRRo7KqxO9cLLv?usp=sharing
 
 📄 **[Relatório completo → `relatorio.md`](relatorio.md)**
-📊 **[Dashboard → `dashboard/index.html`](dashboard/index.html)**
-O dashboard é uma página HTML autocontida com gráficos e tabelas mostrando **por que Morretes é a melhor opção**. Abra `dashboard/index.html` no navegador.
+📊 **[Dashboard → `index.html`](index.html)**
+O dashboard é uma página HTML autocontida com gráficos e tabelas mostrando **por que Morretes é a melhor opção**. Abra `index.html` no navegador (ou `dashboard/index.html`). O enunciado original do desafio está preservado em [`desafio.html`](desafio.html).
 
 ## 🎯 Recomendação final (resumo)
 
