@@ -16,16 +16,22 @@ O dashboard é uma página HTML autocontida com gráficos e tabelas mostrando **
 
 ## Como rodar a análise
 
-Pré-requisito: Python 3.12+. As bases já estão em `data/`.
+Pré-requisito: Python 3.12+. As bases já estão em `data/` — não precisa baixar nada.
 
 ```bash
+# 0. opcional: clonar o repositório e entrar na pasta
+git clone https://github.com/gvnnes/jt2026-geovanne-castro.git
+cd jt2026-geovanne-castro
+
 # 1. criar o ambiente e instalar as dependências (uma vez só)
 python -m venv .venv
-.venv/Scripts/python.exe -m pip install -r requirements.txt     # Linux/Mac: .venv/bin/python
-# (ou ative o venv e use `python`: Windows `Scripts\activate`, Linux/Mac `source .venv/bin/activate`)
+python -m pip install -r requirements.txt     # Windows: .venv\Scripts\python -m pip ...
+# (ou ative o venv: Windows `.venv\Scripts\activate`, Linux/Mac `source .venv/bin/activate`)
 
-# 2. rodar toda a análise de uma vez (gera output/ + gráficos do dashboard)
-.venv/Scripts/python.exe scripts/run_all.py                     # Linux/Mac: .venv/bin/python
+# 2. rodar toda a análise de uma vez (gera output/ + gráficos + index.html na raiz)
+python scripts/run_all.py
+
+# 3. abrir o dashboard: abra o arquivo index.html (raiz) no navegador
 ```
 
 Alternativa passo a passo (na ordem):
