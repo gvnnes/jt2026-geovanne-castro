@@ -4,7 +4,7 @@
 
 📄 **[Relatório completo → `relatorio.md`](relatorio.md)**
 📊 **[Dashboard → `index.html`](index.html)**
-O dashboard é uma página HTML autocontida com gráficos e tabelas mostrando **por que Morretes é a melhor opção**. Abra `index.html` no navegador (ou `dashboard/index.html`). O enunciado original do desafio está preservado em [`desafio.html`](desafio.html).
+O dashboard é uma página HTML autocontida com gráficos e tabelas mostrando **por que Morretes é a melhor opção**. Antes de abrir `index.html` no navegador siga o passo a passo para rodar o pipeline e gerar as imagens da tabela localmente, quando fizer isso o index.html contara com as imagens como mostrado no video. O enunciado original do desafio está preservado em [`desafio.html`](desafio.html).
 
 ## 🎯 Recomendação final (resumo)
 
