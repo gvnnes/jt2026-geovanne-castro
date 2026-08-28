@@ -3,6 +3,9 @@ opencode.json
 .env
 *.env
 
+# Roteiro do vídeo (apoio interno; não é entregável)
+roteiro-video.md
+
 # Python
 __pycache__/
 *.pyc

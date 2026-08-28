@@ -50,13 +50,15 @@ def main():
 
     # 1 ---- Yield por perfil (ordenado)
     b = base.sort_values("yield_liquido", ascending=False).reset_index(drop=True)
-    labels = [f"{r['suburb']}\n{r['beds_group']}" for _, r in b.iterrows()][:8]
+    sub_short = {"Tabuleiro dos Oliveiras": "T. Oliveiras", "Casa Branca": "Casa Branca"}
+    labels = [f"{sub_short.get(r['suburb'], r['suburb'])}\n{r['beds_group']}" for _, r in b.iterrows()][:8]
     vals = (b["yield_liquido"] * 100)[:8].round(2)
     colors = [GREEN if v == vals.max() else (CORAL if "Centro" in l else AZUL)
               for v, l in zip(vals, labels)]
-    fig, ax = plt.subplots(figsize=(8, 4.2))
+    fig, ax = plt.subplots(figsize=(11, 4.2))
     bar(ax, labels, vals, colors, "Yield líquido ao ano por perfil (%) — cenário base (35% ocupação)", ylabel="%")
-    fig.tight_layout(); fig.savefig(os.path.join(OUT, "yield.png"), dpi=150); plt.close(fig)
+    fig.subplots_adjust(bottom=0.18)
+    fig.savefig(os.path.join(OUT, "yield.png"), dpi=150); plt.close(fig)
 
     # 2 ---- Preço/noite projetado
     p = pd.read_csv(os.path.join(ROOT, "output", "revenue", "price_by_profile.csv"))
@@ -105,43 +107,72 @@ def main():
     ax.yaxis.grid(True, color="#EEF2F9", zorder=0); ax.set_axisbelow(True)
     for s in ["top", "right"]: ax.spines[s].set_visible(False)
     fig.tight_layout(); fig.savefig(os.path.join(OUT, "demanda.png"), dpi=150); plt.close(fig)
-
-    # 5 ---- Receita líquida vs preço de compra (bolhas)
+# 5 ---- Receita líquida vs preço de compra (bolhas)
     b2 = base.copy()
     b2 = b2.groupby(["suburb", "beds_group"], as_index=False).agg(
         preco_compra=("preco_compra", "first"), receita_liq=("receita_liquida", "first"),
         yield_liq=("yield_liquido", "first"))
     b2 = b2[b2["preco_compra"] > 0]
     fig, ax = plt.subplots(figsize=(8, 5))
-    yy = (b2["yield_liq"] * 100).round(2)
-    sz = b2["receita_liq"] / 500
+    from adjustText import adjust_text
     def is_morretes(r):
         return r["suburb"] == "Morretes" and r["beds_group"] in ["2 quartos", "3 quartos"]
+
+    texts = []
     for _, r in b2.iterrows():
         if is_morretes(r):
-            col = GREEN
-            shad = "gray"
+            col, shad, opacidade = GREEN, "gray", 0.6
+        elif r["suburb"] == "Centro" and r["beds_group"] == "4+ quartos":
+            col, shad, opacidade = CORAL, "white", 0.8
         else:
-            col = GRAY
-            shad = "white"
-        ax.scatter(r["preco_compra"] / 1e6, r["yield_liq"] * 100, s=r["receita_liq"] / 400,
-                   color=col, alpha=0.8, edgecolor=shad, zorder=3)
-        ax.annotate(f"{r['suburb']} {r['beds_group']}",
-                    (r["preco_compra"] / 1e6, r["yield_liq"] * 100),
-                    fontsize=8, color="#0E1B33" if is_morretes(r) else "#6B7280",
-                    ha="center", va="bottom")
+            col, shad, opacidade = GRAY, "white", 0.8
+            
+        x = r["preco_compra"] / 1e6
+        y = r["yield_liq"] * 100
+        
+        ax.scatter(x, y, s=r["receita_liq"] / 650,
+                   color=col, alpha=opacidade, edgecolor=shad, zorder=3)
+        lab = f"{r['suburb']} {r['beds_group']}"
+        tcol = "#0E1B33" if is_morretes(r) else "#6B7280"
+        
+        # Deslocamento manual estratégico baseado na imagem para evitar cruzamentos
+        x_text, y_text = x, y
+        if r["suburb"] == "Morretes":
+            y_text = y + 0.25 if "2" in r["beds_group"] else y - 0.25
+        elif r["suburb"] == "Meia Praia" and "1" in r["beds_group"]:
+            y_text = y + 0.25
+        elif r["suburb"] == "Tabuleiro dos Oliveiras":
+            y_text = y - 0.25
+        elif r["suburb"] == "Centro" and "1" in r["beds_group"]:
+            y_text = y - 0.25
+        elif r["suburb"] == "Casa Branca":
+            y_text = y + 0.25
+        elif r["suburb"] == "Centro" and "2" in r["beds_group"]:
+            y_text = y + 0.25
+        elif r["suburb"] == "Meia Praia" and "2" in r["beds_group"]:
+            y_text = y - 0.25
+        else:
+            y_text = y + 0.25 # Padrão para os demais isolados
+            
+        t = ax.text(x_text, y_text, lab, fontsize=8, color=tcol, ha="center", va="center")
+        texts.append(t)
+
+    # adjust_text ativado sem "arrowprops" apenas para repulsão fina
+    adjust_text(texts, ax=ax, expand=(1.05, 1.2), force_points=(0.2, 0.4), force_text=(0.2, 0.4))
+                
     ax.axhline(6, color="#d1d5db", ls="--", lw=1)
     ax.text(0.02, 6.05, "meta de yield 6%", color="#9ca3af", fontsize=8, va="bottom")
     ax.scatter([], [], s=60, color=GREEN, edgecolor="gray", label="Morretes (recomendado)")
     ax.scatter([], [], s=60, color=GRAY, edgecolor="white", label="Demais perfis")
-    ax.legend(loc="lower right", fontsize=9, frameon=True)
+    ax.scatter([], [], s=60, color=CORAL, edgecolor="white", label="Centro 4+ (pior yield)")
+    ax.legend(loc="upper right", fontsize=9, frameon=True)
     ax.set_xlabel("Preço de compra (R$ milhões)"); ax.set_ylabel("Yield líquido (%)")
     ax.set_title("Yield vs Preço de compra (tamanho da bolha = receita anual)", fontsize=13, color=NAVY, weight="bold", loc="left", pad=14)
     ax.xaxis.set_major_formatter(lambda x, _: f"R$ {x:.0f}M")
     ax.yaxis.grid(True, color="#EEF2F9", zorder=0); ax.set_axisbelow(True)
     ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout(); fig.savefig(os.path.join(OUT, "bolhas.png"), dpi=150); plt.close(fig)
-
+    
     # 6 ---- Payoff Morretes 3q por cenário
     sel = rev[(rev["suburb"] == "Morretes") & (rev["beds_group"] == "3 quartos")]
     cen = ["conservador", "base", "otimista"]; occ = [0.25, 0.35, 0.45]
@@ -153,11 +184,12 @@ def main():
     colors = [CORAL, AZUL, GREEN]
     bars = ax.bar([f"{o:.0%} ocupação" for o in occ], yields_, color=colors, zorder=3)
     for b, y, liq in zip(bars, yields_, liquida):
-        ax.text(b.get_x() + b.get_width()/2, y + 0.4, f"{y:.1f}%\nR$ {liq:,.0f}/ano",
-                ha="center", va="bottom", fontsize=9)
+        ax.text(b.get_x() + b.get_width()/2, y + 0.3, f"{y:.1f}%  ·  R$ {liq/1000:.0f}k/ano",
+                ha="center", va="bottom", fontsize=8.5)
+    ax.set_ylim(0, max(yields_) * 1.15)
     ax.axhline(6, color=GRAY, ls="--", lw=1); ax.text(0.002, 6.1, "meta 6%", color=GRAY, fontsize=8)
     ax.set_title("Morretes 3 quartos (~R$ 845 mil) — yield por cenário de ocupação",
-                 fontsize=13, color=NAVY, weight="bold", loc="left", pad=14)
+                 fontsize=13, color=NAVY, weight="bold", loc="left", pad=18)
     ax.set_ylabel("Yield líquido (%)"); ax.yaxis.grid(True, color="#EEF2F9", zorder=0); ax.set_axisbelow(True)
     ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout(); fig.savefig(os.path.join(OUT, "payoff.png"), dpi=150); plt.close(fig)

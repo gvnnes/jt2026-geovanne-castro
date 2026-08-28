@@ -24,7 +24,7 @@ Morretes combina o **menor custo de entrada** entre os bairros relevantes (apto 
 
 ## 1. Qual o melhor perfil de imóvel para investir?
 
-**Critério:** yield líquido anual = (receita bruta − condomínio/IPTU − 15% taxa de gestão Seazone) ÷ preço de compra. Esse critério responde diretamente a "o que comprar" (tarefa 4) e penaliza bairros caros como Centro.
+**Critério:** yield líquido anual = (receita bruta − condomínio/IPTU − taxa de gestão) ÷ preço de compra. Usamos **15% de taxa de gestão**, assumida como premissa de mercado (não consta nos dados — ver Limitações), no padrão típico de gestão de curta temporada. Esse critério responde diretamente a "o que comprar" (tarefa 4) e penaliza bairros caros como Centro.
 
 **Resposta: apartamento de 2 a 3 quartos em Morretes.** É a tipologia que maximiza o retorno sobre o capital investido (yield ~8,1%), com ticket de entrada baixo e demanda saudável. Apartamentos de 3 a 4+ quartos geram mais receita absoluta (ex.: Meia Praia 4+ = R$ 161 mil/ano), mas exigem imóveis de R$ 3–5 milhões, derrubando o yield para ~3,5%. O tipo mais eficiente é o apartamento (91% da oferta com preço; casas têm custo/área alto e menor demanda).
 
@@ -40,7 +40,7 @@ Morretes combina o **menor custo de entrada** entre os bairros relevantes (apto 
 
 - **Receita bruta absoluta:** Meia Praia (ex.: R$ 161 mil/ano em 4+ quartos) é o teto, mas exige imóveis de R$ 3,7M+ → yield ~3,5%.
 - **Eficiência por real investido (yield):** Morretes lidera (8,1%), com custo de compra ~4x menor que Meia Praia e demanda relativa quase o dobro (8,5 vs 5,0 reviews/ano).
-- **Centro (tese):** apesar do preço/noite razoável, tem o **menor yield da cidade** (4,9%) por três razões: custo por m² o mais alto (R$ 19.905), demanda relativa a mais baixa (2,8 reviews/ano) e o maior percentual de imóveis sem nenhum review (7,8%) — sinal de oferta ociosa/rotação.
+- **Centro (tese):** apesar do preço/noite razoável, tem **yield fraco (4,9%)** por três razões: custo por m² o mais alto (R$ 19.905), demanda relativa a mais baixa (2,8 reviews/ano) e o maior percentual de imóveis sem nenhum review (7,8%) — sinal de oferta ociosa/rotação. Não é o menor yield da cidade (o pior é o Centro 4+ quartos, 1,9%), mas está bem abaixo da meta de ~6% e da liderança de Morretes (8,1%).
 
 A "melhor localização em termos de receita" depende do objetivo: **maximizar receita absoluta → Meia Praia; maximizar retorno sobre o capital → Morretes.** Para uma tese de escala/rentabilidade como a da Seazone, **Morretes** é a escolha.
 
@@ -87,7 +87,7 @@ A "melhor localização em termos de receita" depende do objetivo: **maximizar r
 | Receita bruta anual | ~R$ 58 mil | Menor que um 3q de Morretes (R$ 85,5 mil) |
 | Demanda relativa | **2,8 reviews/ano** (a menor) | Menor procura sustentada |
 | Risco de vacância | **7,8% sem reviews** (o maior) | Maior chance de ficar ocioso |
-| **Yield líquido** | **4,9%** (o menor da cidade) | Pior retorno sobre o capital |
+| **Yield líquido** | **4,9%** (abaixo da meta ~6%) | Retorno baixo sobre o capital |
 
 O Centro paga caro por m² e sofre baixa demanda relativa e alta ociosidade — exatamente o oposto do que uma tese de eficiência exigiria. A aposta dos compactos pode até gerar boa *absorção* em outros mercados, mas **em Itapema os dados apontam para Morretes 2–3 quartos** como o perfil mais eficiente.
 
@@ -103,6 +103,8 @@ O Centro paga caro por m² e sofre baixa demanda relativa e alta ociosidade — 
 
 ### Limitações e qualidade
 - Não há dado de **ocupação real** no Airbnb (só preço anunciado). Usamos **cenários de ocupação (25/35/45%)** e validamos o *rank* de demanda por reviews/ano e vacância, que são robustos entre perfis.
+- **O risco de vacância ("% de imóveis sem reviews") é um proxy, não uma medida de ociosidade.** Reviews só surgem após uma hospedagem real, então zero reviews sinaliza oferta sem evidência de ocupação — mas **também pode refletir anúncios recém-criados** (novos demais para ter hóspedes). Por isso o tratamos como indicador **comparativo** entre bairros (Morretes 1,2% vs Centro 7,8% — diferença 6x sugere mais oferta parada no Centro) e sempre combinado com outros sinais (custo/m², demanda relativa), **não** como um número absoluto de vacância.
 - Janela de preço limitada a **jan–abr/2025** (inclui pico de verão); aplicamos fator de sazonalidade anual (×0,92) com base em índice mensal típico de litoral de SC.
 - O `aquisition_date` reflete a captura do anúncio, não a idade do imóvel; por isso o denominador de demanda usa **anos do host** (proxy mais confiável, mediana 5 anos).
 - Preços de venda do VivaReal passaram por filtro de sanidade (R$ 30 mil–20 milhões) e normalização de bairros.
+- A **taxa de gestão de 15%** é uma **premissa de mercado assumida**, pois o dado não consta na base. Reflete o padrão típico da Seazone/congêneres de curta temporada, mas não veio dos arquivos de `data/`. Como é aplicada proporcionalmente à receita bruta de todos os perfis, ela reduz os yields na mesma proporção e **não altera a ordem** de qual perfil é melhor — apenas o nível absoluto.

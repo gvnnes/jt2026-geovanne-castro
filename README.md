@@ -6,59 +6,11 @@
 
 **Invista em apartamentos de 2 a 3 quartos no bairro de Morretes (~R$ 790–845 mil).** Yield líquido de ~8,1% ao ano no cenário base (35% de ocupação), payback de ~12 anos.
 
-**Posição sobre a tese interna dos compactos no Centro: os dados NÃO a sustentam.** O Centro é o bairro mais caro por m² (R$ 19.905), tem a menor demanda relativa (2,8 reviews/ano) e o maior risco de ociosidade (7,8% sem reviews) → yield de apenas 4,9%, o menor da cidade.
+**Posição sobre a tese interna dos compactos no Centro: os dados NÃO a sustentam.** O Centro é o bairro mais caro por m² (R$ 19.905), tem a menor demanda relativa (2,8 reviews/ano) e o maior risco de ociosidade (7,8% sem reviews) → yield baixo de 4,9%, abaixo da meta de ~6% e longe dos ~8% de Morretes.
 
 📄 **[Relatório completo → `relatorio.md`](relatorio.md)** · 🎬 **[Roteiro do vídeo → `roteiro-video.md`](roteiro-video.md)** · 📊 **[Dashboard → `dashboard/index.html`](dashboard/index.html)**
 
 O dashboard é uma página HTML autocontida com gráficos e tabelas mostrando **por que Morretes é a melhor opção**. Abra `dashboard/index.html` no navegador.
-
----
-
-## 👉 Leia o desafio aqui
-
-### **[ABRIR O DESAFIO COMPLETO](https://seazone-tech.github.io/jovens-talentos-2026-hackathon-data/)**
-
-Lá está tudo: a missão, os dados, **o que entregar**, as regras, o prazo e **como vamos avaliar**.
-Leia antes de começar a mexer nos dados.
-
-> Se o link acima não abrir, o mesmo conteúdo está no arquivo [`index.html`](index.html) deste repositório
-> (baixe e abra no navegador).
-
----
-
-## Primeiro passo
-
-**Faça um _fork_ deste repositório.** É nele que você vai trabalhar e é ele que você entrega.
-
----
-
-## Os dados (`data/`)
-
-Snapshot estático do mercado imobiliário de **Itapema (SC)**, com anúncios de Airbnb e de venda (VivaReal).
-É a mesma base para todos os candidatos, para garantir comparação justa.
-
-| Arquivo | O que tem | Como conecta |
-|---|---|---|
-| `Details_Itapema.csv` | Cada anúncio de Airbnb: título, reviews, star rating, descrição, host_id, nº de quartos, tipo de imóvel | Base principal dos listings |
-| `Hosts_ids_Itapema.csv` | Dados do anfitrião: nº de reviews, anos como host, superhost, taxa de resposta | Liga com Details pelo `owner_id` |
-| `Mesh_Ids_Data_Itapema.csv` | Latitude/longitude + bairro de cada anúncio | Liga por listing |
-| `Price_AV_Itapema.csv` | Preço por anúncio, por data de estadia e por data de captura | Liga por listing |
-| `VivaReal_Itapema.csv` | Anúncios de venda: preço, condomínio, área, vendedor | Mercado de compra |
-
----
-
-## Resumo do que você entrega
-
-1. **Este repositório, forkado e público**, com a sua análise, o `README.md` explicando como rodar,
-   a pasta `ai-log/` (conversas com a IA **em texto**) e a recomendação final escrita.
-2. **Vídeo de até 3 minutos** no Google Drive, com o link na primeira linha do seu README.
-
-O detalhe de cada item, o prazo e o formulário de entrega estão no
-**[desafio completo](https://seazone-tech.github.io/jovens-talentos-2026-hackathon-data/)**.
-
----
-
-*Seazone — Jovens Talentos AI Builder 2026*
 
 ---
 
@@ -71,10 +23,14 @@ Pré-requisito: Python 3.12.
 python -m venv .venv
 .venv/Scripts/python.exe -m pip install pandas numpy matplotlib
 
-# 2. executar o pipeline (ordem importa)
-.venv/Scripts/python.exe scripts/01_prep.py    # prepara e cruza as bases
-.venv/Scripts/python.exe scripts/02_revenue.py # modelo de receita (preço/demanda/sazonalidade)
-.venv/Scripts/python.exe scripts/03_yield.py   # lado da compra (VivaReal) + yield líquido
+# 2. executar toda a análise de uma vez
+.venv/Scripts/python.exe scripts/run_all.py
+
+# (opcional) executar passo a passo, na ordem
+.venv/Scripts/python.exe scripts/01_prep.py             # prepara e cruza as bases
+.venv/Scripts/python.exe scripts/02_revenue.py          # modelo de receita
+.venv/Scripts/python.exe scripts/03_yield.py            # yield líquido (compra)
+.venv/Scripts/python.exe scripts/04_dashboard_charts.py # gera gráficos do dashboard
 ```
 
 Saídas em `output/`:
@@ -86,3 +42,14 @@ Saídas em `output/`:
 - **`roteiro-video.md`** — roteiro do vídeo de 3 minutos.
 - **`ai-log/`** — sessão de trabalho com a IA exportada em texto (parte da avaliação).
 
+## Sobre os dados
+
+Análise feita sobre o snapshot do mercado imobiliário de **Itapema (SC)**, com anúncios de Airbnb e de venda (VivaReal), localizados em `data/`:
+
+| Arquivo | Conteúdo |
+|---|---|
+| `Details_Itapema.csv` | Anúncios de Airbnb (tipo, quartos, reviews, ratings) |
+| `Hosts_ids_Itapema.csv` | Dados dos anfitriões |
+| `Mesh_Ids_Data_Itapema.csv` | Bairro + coordenadas dos anúncios |
+| `Price_AV_Itapema.csv` | Preço por anúncio e data |
+| `VivaReal_Itapema.csv` | Anúncios de venda (mercado de compra) |
