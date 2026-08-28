@@ -1,6 +1,6 @@
 # Hackathon Jovens Talentos AI Builder 2026 — Seazone
 
-> **Vídeo (3 min):** (https://drive.google.com/drive/folders/16GcQvyIdf5C9w3o67ukRRo7KqxO9cLLv?usp=sharing)
+> **Vídeo (3 min):** https://drive.google.com/drive/folders/16GcQvyIdf5C9w3o67ukRRo7KqxO9cLLv?usp=sharing
 
 📄 **[Relatório completo → `relatorio.md`](relatorio.md)**
 📊 **[Dashboard → `dashboard/index.html`](dashboard/index.html)**
