@@ -8,7 +8,9 @@
 
 **Posição sobre a tese interna dos compactos no Centro: os dados NÃO a sustentam.** O Centro é o bairro mais caro por m² (R$ 19.905), tem a menor demanda relativa (2,8 reviews/ano) e o maior risco de ociosidade (7,8% sem reviews) → yield de apenas 4,9%, o menor da cidade.
 
-📄 **[Relatório completo → `relatorio.md`](relatorio.md)** · 🎬 **[Roteiro do vídeo → `roteiro-video.md`](roteiro-video.md)**
+📄 **[Relatório completo → `relatorio.md`](relatorio.md)** · 🎬 **[Roteiro do vídeo → `roteiro-video.md`](roteiro-video.md)** · 📊 **[Dashboard → `dashboard/index.html`](dashboard/index.html)**
+
+O dashboard é uma página HTML autocontida com gráficos e tabelas mostrando **por que Morretes é a melhor opção**. Abra `dashboard/index.html` no navegador.
 
 ---
 

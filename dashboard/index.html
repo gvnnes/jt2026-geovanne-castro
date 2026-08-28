@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard de Investimento — Itapema (SC) · Seazone</title>
+<style>
+  :root{
+    --navy:#00143D; --azul:#0055FF; --coral:#FC6058; --verde:#16a34a;
+    --tinta:#0E1B33; --suave:#4A5A78; --linha:#DCE3EF; --fundo:#F4F7FC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Segoe UI",system-ui,Helvetica,Arial,sans-serif;color:var(--tinta);background:var(--fundo);line-height:1.55}
+  header{background:var(--navy);color:#fff;padding:36px 28px}
+  header .tag{display:inline-block;background:var(--coral);color:#fff;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:3px;margin-bottom:14px}
+  header h1{font-size:30px;letter-spacing:-.02em;margin-bottom:6px}
+  header p{color:#A9BCDD;max-width:760px}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px}
+  .veredicto{background:linear-gradient(135deg,#0b2a5e,#00143D);color:#fff;border-radius:12px;padding:22px 26px;margin:26px auto;display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+  .veredicto .big{flex:1;min-width:240px}
+  .veredicto .big b{font-size:22px;color:#7CFC9A;display:block;margin-bottom:4px}
+  .veredicto .vs{background:var(--coral);border-radius:10px;padding:14px 18px;font-size:14px;max-width:320px}
+  .veredicto .vs b{display:block;color:#fff;margin-bottom:4px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:22px auto}
+  .kpi{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:16px 18px}
+  .kpi .l{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);font-weight:700}
+  .kpi .v{font-size:26px;font-weight:800;color:var(--navy);margin-top:4px}
+  .kpi .s{font-size:12px;color:var(--suave);margin-top:2px}
+  .kpi.verde .v{color:var(--verde)} .kpi.coral .v{color:var(--coral)}
+  section.card{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:22px 24px;margin-bottom:18px}
+  section.card h2{font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--azul);font-weight:800;margin-bottom:14px;border-left:4px solid var(--azul);padding-left:10px}
+  section.card h2::after{content:""}
+  .charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:18px}
+  .charts figure{background:var(--fundo);border:1px solid var(--linha);border-radius:10px;padding:10px;margin:0}
+  .charts img{width:100%;height:auto;border-radius:6px;display:block}
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+  th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+  td{padding:10px 12px;border-bottom:1px solid var(--linha);vertical-align:top}
+  tbody tr:nth-child(even){background:#FAFCFF}
+  tr.dest td{background:#EEF9F1;font-weight:700;color:var(--verde)}
+  tr.tese td{background:#FFF0EF;color:#C0362B}
+  .note{font-size:12px;color:var(--suave);margin-top:8px;font-style:italic}
+  footer{text-align:center;color:var(--suave);font-size:13px;padding:18px;border-top:1px solid var(--linha)}
+  @media(max-width:640px){.charts{grid-template-columns:1fr} header h1{font-size:23px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="tag">Recomendação de investimento</span>
+    <h1>Dashboard — Onde investir em Itapema (SC)?</h1>
+    <p>Análise dos dados de Airbnb e VivaReal para a decisão da Seazone.
+       Critério principal: <b style="color:#fff">yield líquido anual</b> (retorno sobre o preço de compra).</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="veredicto">
+    <div class="big">
+      <b>Compre apartamentos de 2–3 quartos em MORRETES</b>
+      Ticket ~R$ 845 mil · Yield líquido de ~8,1% ao ano · Payback ~12 anos
+    </div>
+    <div class="vs">
+      <b>A tese interna dos compactos no Centro NÃO se sustenta</b>
+      Centro: menor yield (4,9%), maior R$/m², menor demanda e maior ociosidade.
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="kpi verde"><div class="l">Yield Morretes 3q</div><div class="v">8,1%</div><div class="s">líquido/ano · cenário base (35% ocup.)</div></div>
+    <div class="kpi"><div class="l">Preço de compra</div><div class="v">R$ 845 mil</div><div class="s">mediana apto 3 quartos Morretes</div></div>
+    <div class="kpi"><div class="l">Receita líquida/ano</div><div class="v">R$ 68,6 mil</div><div class="s">bruta R$ 85,5 mil − custos − 15% gestão</div></div>
+    <div class="kpi coral"><div class="l">Yield Compacto Centro</div><div class="v">4,9%</div><div class="s">o pior da cidade · R$ 19.905/m²</div></div>
+  </div>
+
+  <section class="card">
+    <h2>Por que Morretes vence — yield por perfil</h2>
+    <div class="charts">
+      <figure><img src="graficos/yield.png" alt="Yield por perfil"></figure>
+      <figure><img src="graficos/bolhas.png" alt="Yield vs preço"></figure>
+    </div>
+    <table>
+      <thead><tr><th>Perfil</th><th>Preço compra (mediana)</th><th>Receita líquida/ano</th><th>Yield líquido</th><th>Demanda (rev/ano)</th><th>Risco vacância</th></tr></thead>
+      <tbody>
+        <tr class="dest"><td>Morretes · 2 quartos</td><td>R$ 790 mil</td><td>R$ 64,5 mil</td><td>8,2%</td><td>8,5</td><td>1,2%</td></tr>
+        <tr class="dest"><td>Morretes · 3 quartos</td><td>R$ 845 mil</td><td>R$ 68,6 mil</td><td>8,1%</td><td>8,5</td><td>1,2%</td></tr>
+        <tr><td>Meia Praia · 1 quarto</td><td>R$ 878 mil</td><td>R$ 57,4 mil</td><td>6,5%</td><td>5,0</td><td>0,6%</td></tr>
+        <tr><td>Tabuleiro dos Oliveiras · 2q</td><td>R$ 780 mil</td><td>R$ 50,2 mil</td><td>6,4%</td><td>6,1</td><td>5,0%</td></tr>
+        <tr><td>Casa Branca · 2 quartos</td><td>R$ 655 mil</td><td>R$ 33,1 mil</td><td>5,1%</td><td>6,3</td><td>0,0%</td></tr>
+        <tr class="tese"><td>Centro · 1 quarto (TESE)</td><td>R$ 890 mil</td><td>R$ 44,0 mil</td><td>4,9%</td><td>2,8</td><td>7,8%</td></tr>
+        <tr><td>Centro · 2 quartos</td><td>R$ 1,15 M</td><td>R$ 55,8 mil</td><td>4,9%</td><td>2,8</td><td>7,8%</td></tr>
+        <tr><td>Meia Praia · 4+ quartos</td><td>R$ 3,7 M</td><td>R$ 129,7 mil</td><td>3,5%</td><td>5,0</td><td>0,6%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Morretes entrega o maior retorno por real investido. Imóveis grandes da orla geram mais receita absoluta, mas o preço de compra (R$ 3–5 M) derruba o yield para ~3,5%.</p>
+  </section>
+
+  <section class="card">
+    <h2>Comparando os bairros: custo, preço e demanda</h2>
+    <div class="charts">
+      <figure><img src="graficos/cpm2.png" alt="R$/m² por bairro"></figure>
+      <figure><img src="graficos/demanda.png" alt="Demanda e vacância"></figure>
+    </div>
+    <table>
+      <thead><tr><th>Bairro</th><th>Custo compra (R$/m² — 2 a 3q)</th><th>Receita bruta/ano (base)</th><th>Demanda (rev/ano)</th><th>Risco de vacância</th></tr></thead>
+      <tbody>
+        <tr class="dest"><td>Morretes</td><td>~R$ 8–11 mil</td><td>R$ 80–85 mil</td><td>8,5</td><td>1,2%</td></tr>
+        <tr><td>Meia Praia</td><td>~R$ 13–15 mil</td><td>R$ 65–161 mil</td><td>5,0</td><td>0,6%</td></tr>
+        <tr><td>Tabuleiro dos Oliveiras</td><td>~R$ 11 mil</td><td>R$ 59 mil</td><td>6,1</td><td>5,0%</td></tr>
+        <tr><td>Centro</td><td>~R$ 13–17 mil</td><td>R$ 58–99 mil</td><td>2,8</td><td>7,8%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Centro é o bairro de maior custo por m², com baixa demanda e alta ociosidade — o oposto de uma aposta eficiente. Morretes concentra o que interessa: barato por m², com demanda e ocupação saudáveis.</p>
+  </section>
+
+  <section class="card">
+    <h2>Estimativa de retorno — o que a Seazone compraria hoje</h2>
+    <div class="charts">
+      <figure><img src="graficos/payoff.png" alt="Payoff Morretes 3q"></figure>
+      <figure><img src="graficos/preco_noite.png" alt="Preço por noite"></figure>
+    </div>
+    <table>
+      <thead><tr><th>Cenário</th><th>Ocupação</th><th>Receita bruta/ano</th><th>Custos fixos</th><th>Taxa gestão (15%)</th><th>Receita líquida/ano</th><th>Yield líquido</th><th>Payback</th></tr></thead>
+      <tbody>
+        <tr><td>Conservador</td><td>25%</td><td>R$ 61,1 mil</td><td>R$ 4,05 mil</td><td>R$ 9,2 mil</td><td>R$ 47,8 mil</td><td>5,7%</td><td>17,7 anos</td></tr>
+        <tr class="dest"><td>Base</td><td>35%</td><td>R$ 85,5 mil</td><td>R$ 4,05 mil</td><td>R$ 12,8 mil</td><td>R$ 68,6 mil</td><td>8,1%</td><td>12,3 anos</td></tr>
+        <tr><td>Otimista</td><td>45%</td><td>R$ 109,9 mil</td><td>R$ 4,05 mil</td><td>R$ 16,5 mil</td><td>R$ 89,4 mil</td><td>10,6%</td><td>9,5 anos</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Mesmo no cenário mais conservador (25% de ocupação) o ativo ainda entrega ~5,7% — sem prejuízo operacional. Defesa da decisão no <b>relatorio.md</b>.</p>
+  </section>
+
+  <section class="card">
+    <h2>Por que Morretes é a melhor opção — síntese</h2>
+    <ul style="margin-top:6px">
+      <li><b>Maior retorno sobre o capital:</b> yield ~8,1% ao ano, líder entre todos os perfis.</li>
+      <li><b>Ticket de entrada acessível</b> (~R$ 845 mil): permite diversificar em vários ativos e reduz risco de concentração.</li>
+      <li><b>Demanda saudável e real:</b> 8,5 reviews/ano (quase o dobro do Centro) por host experiente.</li>
+      <li><b>Menor ociosidade:</b> apenas 1,2% dos imóveis sem nenhum review vs 7,8% no Centro.</li>
+      <li><b>Boa liquidez de saída:</b> fácil revenda e aluguel tradicional alternativo.</li>
+      <li><b>A tese dos compactos no Centro não se sustenta:</b> nas 4 dimensões (custo, receita, demanda, vacância) fica atrás.</li>
+    </ul>
+  </section>
+
+  <footer>Hackathon Jovens Talentos AI Builder 2026 · Geovanne Castro · Dados: Airbnb + VivaReal · Relatório completo em <code>relatorio.md</code></footer>
+</div>
+</body>
+</html>
