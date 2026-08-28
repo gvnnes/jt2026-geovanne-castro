@@ -1,0 +1,49 @@
+suburb,listing_type,beds_group,n,cenario,ocupacao,preco_noite_anual,receita_anual_bruta
+Casa Branca,apartamento,2 quartos,11,conservador,0.25,339.0151035752879,30935.128201245025
+Casa Branca,apartamento,2 quartos,11,base,0.35,339.0151035752879,43309.179481743035
+Casa Branca,apartamento,2 quartos,11,otimista,0.45,339.0151035752879,55683.230762241044
+Centro,apartamento,3 quartos,45,conservador,0.25,774.2015730144304,70645.89353756678
+Centro,apartamento,3 quartos,45,base,0.35,774.2015730144304,98904.25095259349
+Centro,apartamento,3 quartos,45,otimista,0.45,774.2015730144304,127162.60836762021
+Centro,apartamento,4+ quartos,5,conservador,0.25,677.6961054044431,61839.76961815543
+Centro,apartamento,4+ quartos,5,base,0.35,677.6961054044431,86575.6774654176
+Centro,apartamento,4+ quartos,5,otimista,0.45,677.6961054044431,111311.58531267977
+Centro,apartamento,2 quartos,65,conservador,0.25,571.0282363174491,52106.32656396723
+Centro,apartamento,2 quartos,65,base,0.35,571.0282363174491,72948.85718955412
+Centro,apartamento,2 quartos,65,otimista,0.45,571.0282363174491,93791.38781514102
+Centro,apartamento,1 quarto,78,conservador,0.25,455.99403521228686,41609.45571312118
+Centro,apartamento,1 quarto,78,base,0.35,455.99403521228686,58253.237998369645
+Centro,apartamento,1 quarto,78,otimista,0.45,455.99403521228686,74897.02028361813
+Meia Praia,apartamento,4+ quartos,65,conservador,0.25,1259.625318705068,114940.81033183745
+Meia Praia,apartamento,4+ quartos,65,base,0.35,1259.625318705068,160917.13446457242
+Meia Praia,apartamento,4+ quartos,65,otimista,0.45,1259.625318705068,206893.4585973074
+Meia Praia,apartamento,3 quartos,327,conservador,0.25,675.4679897143811,61636.45406143728
+Meia Praia,apartamento,3 quartos,327,base,0.35,675.4679897143811,86291.03568601218
+Meia Praia,apartamento,3 quartos,327,otimista,0.45,675.4679897143811,110945.61731058711
+Meia Praia,apartamento,1 quarto,20,conservador,0.25,529.7954734211087,48343.836949676166
+Meia Praia,apartamento,1 quarto,20,base,0.35,529.7954734211087,67681.37172954663
+Meia Praia,apartamento,1 quarto,20,otimista,0.45,529.7954734211087,87018.9065094171
+Meia Praia,apartamento,2 quartos,187,conservador,0.25,511.32888751670794,46658.7609858996
+Meia Praia,apartamento,2 quartos,187,base,0.35,511.32888751670794,65322.265380259436
+Meia Praia,apartamento,2 quartos,187,otimista,0.45,511.32888751670794,83985.76977461929
+Meia Praia,casa,3 quartos,5,conservador,0.25,464.24929816743895,42362.748457778805
+Meia Praia,casa,3 quartos,5,base,0.35,464.24929816743895,59307.847840890325
+Meia Praia,casa,3 quartos,5,otimista,0.45,464.24929816743895,76252.94722400185
+Meia Praia,apartamento,studio,8,conservador,0.25,406.77235193271116,37117.977113859895
+Meia Praia,apartamento,studio,8,base,0.35,406.77235193271116,51965.16795940385
+Meia Praia,apartamento,studio,8,otimista,0.45,406.77235193271116,66812.35880494781
+Meia Praia,outros,1 quarto,11,conservador,0.25,168.1153482388992,15340.525526799553
+Meia Praia,outros,1 quarto,11,base,0.35,168.1153482388992,21476.73573751937
+Meia Praia,outros,1 quarto,11,otimista,0.45,168.1153482388992,27612.945948239194
+Morretes,apartamento,3 quartos,10,conservador,0.25,669.0609144453622,61051.8084431393
+Morretes,apartamento,3 quartos,10,base,0.35,669.0609144453622,85472.53182039502
+Morretes,apartamento,3 quartos,10,otimista,0.45,669.0609144453622,109893.25519765074
+Morretes,apartamento,2 quartos,51,conservador,0.25,630.8791525407288,57567.7226693415
+Morretes,apartamento,2 quartos,51,base,0.35,630.8791525407288,80594.8117370781
+Morretes,apartamento,2 quartos,51,otimista,0.45,630.8791525407288,103621.90080481471
+Morretes,casa,2 quartos,9,conservador,0.25,451.48700201462475,41198.188933834506
+Morretes,casa,2 quartos,9,base,0.35,451.48700201462475,57677.464507368306
+Morretes,casa,2 quartos,9,otimista,0.45,451.48700201462475,74156.74008090212
+Tabuleiro dos Oliveiras,apartamento,2 quartos,12,conservador,0.25,462.4522748172487,42198.77007707394
+Tabuleiro dos Oliveiras,apartamento,2 quartos,12,base,0.35,462.4522748172487,59078.27810790351
+Tabuleiro dos Oliveiras,apartamento,2 quartos,12,otimista,0.45,462.4522748172487,75957.78613873309

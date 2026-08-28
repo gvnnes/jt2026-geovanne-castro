@@ -1,5 +1,17 @@
 # Hackathon Jovens Talentos AI Builder 2026 — Seazone
 
+> **Vídeo (3 min):** [ADICIONE AQUI O LINK DO GOOGLE DRIVE — compartilhamento "qualquer pessoa com o link"]
+
+## 🎯 Recomendação final (resumo)
+
+**Invista em apartamentos de 2 a 3 quartos no bairro de Morretes (~R$ 790–845 mil).** Yield líquido de ~8,1% ao ano no cenário base (35% de ocupação), payback de ~12 anos.
+
+**Posição sobre a tese interna dos compactos no Centro: os dados NÃO a sustentam.** O Centro é o bairro mais caro por m² (R$ 19.905), tem a menor demanda relativa (2,8 reviews/ano) e o maior risco de ociosidade (7,8% sem reviews) → yield de apenas 4,9%, o menor da cidade.
+
+📄 **[Relatório completo → `relatorio.md`](relatorio.md)** · 🎬 **[Roteiro do vídeo → `roteiro-video.md`](roteiro-video.md)**
+
+---
+
 ## 👉 Leia o desafio aqui
 
 ### **[ABRIR O DESAFIO COMPLETO](https://seazone-tech.github.io/jovens-talentos-2026-hackathon-data/)**
@@ -45,3 +57,30 @@ O detalhe de cada item, o prazo e o formulário de entrega estão no
 ---
 
 *Seazone — Jovens Talentos AI Builder 2026*
+
+---
+
+## Como rodar a análise
+
+Pré-requisito: Python 3.12.
+
+```bash
+# 1. criar o ambiente e instalar dependências
+python -m venv .venv
+.venv/Scripts/python.exe -m pip install pandas numpy matplotlib
+
+# 2. executar o pipeline (ordem importa)
+.venv/Scripts/python.exe scripts/01_prep.py    # prepara e cruza as bases
+.venv/Scripts/python.exe scripts/02_revenue.py # modelo de receita (preço/demanda/sazonalidade)
+.venv/Scripts/python.exe scripts/03_yield.py   # lado da compra (VivaReal) + yield líquido
+```
+
+Saídas em `output/`:
+- `output/clean/` — bases consolidadas (listings com preço, preço por imóvel, VivaReal normalizado).
+- `output/revenue/` — preço por perfil, demanda/competição por bairro, cenários de receita.
+- `output/yield/` — yield líquido por perfil e cenário de ocupação.
+
+- **`relatorio.md`** — recomendação final e posição sobre a tese dos compactos no Centro.
+- **`roteiro-video.md`** — roteiro do vídeo de 3 minutos.
+- **`ai-log/`** — sessão de trabalho com a IA exportada em texto (parte da avaliação).
+
