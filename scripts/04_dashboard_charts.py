@@ -115,16 +115,26 @@ def main():
     fig, ax = plt.subplots(figsize=(8, 5))
     yy = (b2["yield_liq"] * 100).round(2)
     sz = b2["receita_liq"] / 500
+    def is_morretes(r):
+        return r["suburb"] == "Morretes" and r["beds_group"] in ["2 quartos", "3 quartos"]
     for _, r in b2.iterrows():
-        col = GREEN if (r["suburb"] == "Morretes" and r["beds_group"] in ["2 quartos", "3 quartos"]) \
-              else CORAL if r["suburb"] == "Centro" else AZUL
+        if is_morretes(r):
+            col = GREEN
+            shad = "gray"
+        else:
+            col = GRAY
+            shad = "white"
         ax.scatter(r["preco_compra"] / 1e6, r["yield_liq"] * 100, s=r["receita_liq"] / 400,
-                   color=col, alpha=0.75, edgecolor="white", zorder=3)
+                   color=col, alpha=0.8, edgecolor=shad, zorder=3)
         ax.annotate(f"{r['suburb']} {r['beds_group']}",
                     (r["preco_compra"] / 1e6, r["yield_liq"] * 100),
-                    fontsize=8, color="#0E1B33", ha="center", va="bottom")
-    ax.axhline(6, color=GRAY, ls="--", lw=1)
-    ax.text(0.02, 6.05, "meta de yield 6%", color=GRAY, fontsize=8, va="bottom")
+                    fontsize=8, color="#0E1B33" if is_morretes(r) else "#6B7280",
+                    ha="center", va="bottom")
+    ax.axhline(6, color="#d1d5db", ls="--", lw=1)
+    ax.text(0.02, 6.05, "meta de yield 6%", color="#9ca3af", fontsize=8, va="bottom")
+    ax.scatter([], [], s=60, color=GREEN, edgecolor="gray", label="Morretes (recomendado)")
+    ax.scatter([], [], s=60, color=GRAY, edgecolor="white", label="Demais perfis")
+    ax.legend(loc="lower right", fontsize=9, frameon=True)
     ax.set_xlabel("Preço de compra (R$ milhões)"); ax.set_ylabel("Yield líquido (%)")
     ax.set_title("Yield vs Preço de compra (tamanho da bolha = receita anual)", fontsize=13, color=NAVY, weight="bold", loc="left", pad=14)
     ax.xaxis.set_major_formatter(lambda x, _: f"R$ {x:.0f}M")
